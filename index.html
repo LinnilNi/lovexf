@@ -1,500 +1,499 @@
 <!doctype html>
 <html>
+	<head>
+		<meta charset="utf-8">
+		<title>和你在一起的滴滴点点...</title>
 
-<head>
-	<meta charset="utf-8">
-	<title>和你在一起的滴滴点点...</title>
+		<script src="js/jquery.min.js"></script>
 
-	<script src="js/jquery.min.js"></script>
+		<style>
+			@import url('https://fonts.googleapis.com/css?family=Nunito:300,400,700');
+			/* _variables.css */
+			/* _mixins.css */
+			/* _global.css */
 
-	<style>
-		@import url('https://fonts.googleapis.com/css?family=Nunito:300,400,700');
-		/* _variables.css */
-		/* _mixins.css */
-		/* _global.css */
+			* {
+				box-sizing: border-box;
+			}
 
-		* {
-			box-sizing: border-box;
-		}
+			body {
+				font-family: 'Nunito', sans-serif;
+				background: -webkit-linear-gradient(right, #BE93C5, #7BC6CC);
+				background: linear-gradient(to left, #BE93C5, #7BC6CC);
+			}
 
-		body {
-			font-family: 'Nunito', sans-serif;
-			background: -webkit-linear-gradient(right, #BE93C5, #7BC6CC);
-			background: linear-gradient(to left, #BE93C5, #7BC6CC);
-		}
+			img {
+				max-width: 100%;
+				height: auto;
+			}
+			/* _site-header.css */
 
-		img {
-			max-width: 100%;
-			height: auto;
-		}
-		/* _site-header.css */
+			.site-header {
+				text-align: center;
+				padding: 40px 0;
+			}
 
-		.site-header {
-			text-align: center;
-			padding: 40px 0;
-		}
+			.site-header__title {
+				font-size: 36px;
+				color: #fff;
+			}
+			/* _wrapper.css */
 
-		.site-header__title {
-			font-size: 36px;
-			color: #fff;
-		}
-		/* _wrapper.css */
+			.wrapper {
+				padding-left: 18px;
+				padding-right: 18px;
+				max-width: 1236px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			/* _timeline.css */
 
-		.wrapper {
-			padding-left: 18px;
-			padding-right: 18px;
-			max-width: 1236px;
-			margin-left: auto;
-			margin-right: auto;
-		}
-		/* _timeline.css */
+			.timeline {
+				position: relative;
+				margin: 30px auto;
+				padding: 60px 0;
+			}
 
-		.timeline {
-			position: relative;
-			margin: 30px auto;
-			padding: 60px 0;
-		}
-
-		.timeline::before {
-			content: "";
-			position: absolute;
-			top: 0;
-			left: 10%;
-			width: 4px;
-			height: 100%;
-			background-color: #8d94b1;
-		}
-
-		@media (min-width: 800px) {
 			.timeline::before {
-				left: 50%;
-				margin-left: -2px;
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 10%;
+				width: 4px;
+				height: 100%;
+				background-color: #8d94b1;
 			}
-		}
 
-		.timeline__item {
-			margin-bottom: 100px;
-			position: relative;
-		}
+			@media (min-width: 800px) {
+				.timeline::before {
+					left: 50%;
+					margin-left: -2px;
+				}
+			}
 
-		.timeline__item::after {
-			content: "";
-			clear: both;
-			display: table;
-		}
+			.timeline__item {
+				margin-bottom: 100px;
+				position: relative;
+			}
 
-		.timeline__item:nth-child(2n) .timeline__item__content {
-			float: right;
-		}
+			.timeline__item::after {
+				content: "";
+				clear: both;
+				display: table;
+			}
 
-		.timeline__item:nth-child(2n) .timeline__item__content::before {
-			content: '';
-			right: 40%;
-		}
+			.timeline__item:nth-child(2n) .timeline__item__content {
+				float: right;
+			}
 
-		@media (min-width: 800px) {
 			.timeline__item:nth-child(2n) .timeline__item__content::before {
-				left: inherit;
+				content: '';
+				right: 40%;
 			}
-		}
 
-		.timeline__item:nth-child(2n) .timeline__item__content__date {
-			background-color: #b292c5;
-		}
+			@media (min-width: 800px) {
+				.timeline__item:nth-child(2n) .timeline__item__content::before {
+					left: inherit;
+				}
+			}
 
-		.timeline__item:nth-child(2n) .timeline__item__content__description {
-			color: #b292c5;
-		}
+			.timeline__item:nth-child(2n) .timeline__item__content__date {
+				background-color: #b292c5;
+			}
 
-		.timeline__item:last-child {
-			margin-bottom: 0;
-		}
+			.timeline__item:nth-child(2n) .timeline__item__content__description {
+				color: #b292c5;
+			}
 
-		.timeline__item-bg {
-			-webkit-transition: all 1s ease-out;
-			transition: all 1s ease-out;
-			color: #fff;
-		}
+			.timeline__item:last-child {
+				margin-bottom: 0;
+			}
 
-		.timeline__item-bg:nth-child(2n) .timeline__item__station {
-			background-color: #b292c5;
-		}
+			.timeline__item-bg {
+				-webkit-transition: all 1s ease-out;
+				transition: all 1s ease-out;
+				color: #fff;
+			}
 
-		.timeline__item-bg:nth-child(2n) .timeline__item__content {
-			background-color: #b292c5;
-		}
+			.timeline__item-bg:nth-child(2n) .timeline__item__station {
+				background-color: #b292c5;
+			}
 
-		.timeline__item-bg:nth-child(2n) .timeline__item__content::before {
-			background-color: #b292c5;
-		}
+			.timeline__item-bg:nth-child(2n) .timeline__item__content {
+				background-color: #b292c5;
+			}
 
-		.timeline__item-bg:nth-child(2n) .timeline__item__content__description {
-			color: #fff;
-		}
+			.timeline__item-bg:nth-child(2n) .timeline__item__content::before {
+				background-color: #b292c5;
+			}
 
-		.timeline__item-bg .timeline__item__station {
-			background-color: #65adb7;
-		}
+			.timeline__item-bg:nth-child(2n) .timeline__item__content__description {
+				color: #fff;
+			}
 
-		.timeline__item-bg .timeline__item__content {
-			background-color: #65adb7;
-		}
+			.timeline__item-bg .timeline__item__station {
+				background-color: #65adb7;
+			}
 
-		.timeline__item-bg .timeline__item__content::before {
-			background-color: #65adb7;
-		}
+			.timeline__item-bg .timeline__item__content {
+				background-color: #65adb7;
+			}
 
-		.timeline__item-bg .timeline__item__content__description {
-			color: #fff;
-		}
+			.timeline__item-bg .timeline__item__content::before {
+				background-color: #65adb7;
+			}
 
-		.timeline__item__station {
-			background-color: #9aa0b9;
-			width: 40px;
-			height: 40px;
-			position: absolute;
-			border-radius: 50%;
-			padding: 10px;
-			top: 0;
-			left: 10%;
-			margin-left: -33px;
-			border: 4px solid #8d94b1;
-			-webkit-transition: all .3s ease-out;
-			transition: all .3s ease-out;
-		}
+			.timeline__item-bg .timeline__item__content__description {
+				color: #fff;
+			}
 
-		@media (min-width: 800px) {
 			.timeline__item__station {
-				left: 50%;
-				margin-left: -30px;
-				width: 60px;
-				height: 60px;
-				padding: 15px;
-				border-width: 6px;
+				background-color: #9aa0b9;
+				width: 40px;
+				height: 40px;
+				position: absolute;
+				border-radius: 50%;
+				padding: 10px;
+				top: 0;
+				left: 10%;
+				margin-left: -33px;
+				border: 4px solid #8d94b1;
+				-webkit-transition: all .3s ease-out;
+				transition: all .3s ease-out;
 			}
-		}
 
-		.timeline__item__content {
-			width: 80%;
-			background: #fff;
-			padding: 20px 30px;
-			border-radius: 6px;
-			float: right;
-			-webkit-transition: all .3s ease-out;
-			transition: all .3s ease-out;
-		}
+			@media (min-width: 800px) {
+				.timeline__item__station {
+					left: 50%;
+					margin-left: -30px;
+					width: 60px;
+					height: 60px;
+					padding: 15px;
+					border-width: 6px;
+				}
+			}
 
-		@media (min-width: 800px) {
 			.timeline__item__content {
-				width: 40%;
-				float: inherit;
-				padding: 30px 40px;
+				width: 80%;
+				background: #fff;
+				padding: 20px 30px;
+				border-radius: 6px;
+				float: right;
+				-webkit-transition: all .3s ease-out;
+				transition: all .3s ease-out;
 			}
-		}
 
-		.timeline__item__content::before {
-			content: '';
-			position: absolute;
-			left: 10%;
-			background: #8d94b1;
-			top: 20px;
-			width: 10%;
-			height: 4px;
-			z-index: -1;
-			-webkit-transition: all .3s ease-out;
-			transition: all .3s ease-out;
-		}
+			@media (min-width: 800px) {
+				.timeline__item__content {
+					width: 40%;
+					float: inherit;
+					padding: 30px 40px;
+				}
+			}
 
-		@media (min-width: 800px) {
 			.timeline__item__content::before {
-				left: 40%;
-				top: 30px;
+				content: '';
+				position: absolute;
+				left: 10%;
+				background: #8d94b1;
+				top: 20px;
+				width: 10%;
 				height: 4px;
-				margin-top: -2px;
+				z-index: -1;
+				-webkit-transition: all .3s ease-out;
+				transition: all .3s ease-out;
 			}
-		}
 
-		.timeline__item__content__date {
-			margin: 0;
-			padding: 8px 12px;
-			font-size: 15px;
-			margin-bottom: 10px;
-			background-color: #:;
-			;
-			color: #fff;
-			display: inline-block;
-			border-radius: 4px;
-			border: 2px solid #fff;
-		}
+			@media (min-width: 800px) {
+				.timeline__item__content::before {
+					left: 40%;
+					top: 30px;
+					height: 4px;
+					margin-top: -2px;
+				}
+			}
 
-		.timeline__item__content__description {
-			margin: 0;
-			padding: 0;
-			font-size: 16px;
-			line-height: 24px;
-			font-weight: 300;
-			color: #65adb7;
-		}
+			.timeline__item__content__date {
+				margin: 0;
+				padding: 8px 12px;
+				font-size: 15px;
+				margin-bottom: 10px;
+				background-color: #:;
+				;
+				color: #fff;
+				display: inline-block;
+				border-radius: 4px;
+				border: 2px solid #fff;
+			}
 
-		@media (min-width: 800px) {
 			.timeline__item__content__description {
-				font-size: 19px;
-				line-height: 28px;
+				margin: 0;
+				padding: 0;
+				font-size: 16px;
+				line-height: 24px;
+				font-weight: 300;
+				color: #65adb7;
 			}
-		}
-		/* _site-footer.css */
 
-		.site-footer {
-			padding: 50px 0 200px 0;
-		}
+			@media (min-width: 800px) {
+				.timeline__item__content__description {
+					font-size: 19px;
+					line-height: 28px;
+				}
+			}
+			/* _site-footer.css */
 
-		.site-footer__text {
-			color: #e6e6e6;
-			font-size: 14px;
-			text-align: center;
-		}
+			.site-footer {
+				padding: 50px 0 200px 0;
+			}
 
-		.site-footer__text__link {
-			color: #8287a9;
-		}
-	</style>
+			.site-footer__text {
+				color: #e6e6e6;
+				font-size: 14px;
+				text-align: center;
+			}
 
-
-	<!--背景音乐-->
-	<embed src="music/小魂%20-%20宝贝.mp3" hidden="true" autostart="true" loop="true">
-
-
-</head>
-
-<body>
-
-	<script src="js/jquery.waypoints.min.js"></script>
-
-	<header class="site-header">
-		<div class="wrapper">
-			<h1 class="site-header__title">唯不忘相思...</h1>
-		</div>
-	</header>
-
-	<section class="timeline">
-		<div class="wrapper">
-			<div class="timeline__item timeline__item--0">
-				<div class="timeline__item__station"></div>
-				<div class="timeline__item__content">
-					<h2 class="timeline__item__content__date">2018&nbsp;Apr.</h2>
-					<p class="timeline__item__content__description">&nbsp;四月是真是上帝给我们开的一个恶作剧，让你我以独特的方式相见，我们的故事就此开始 ...
-					</p>
-				</div>
-			</div>
-			<div class="timeline__item timeline__item--1">
-				<div class="timeline__item__station"></div>
-				<div class="timeline__item__content">
-					<h2 class="timeline__item__content__date">2018 Apr. 9</h2>
-					<p class="timeline__item__content__description">&nbsp;相处了一段时间，发现两个人都是真的很走心的在对待这份感情...</p>
-					<br />
-					<img src="img/Snipaste_2018-08-17_13-22-32.png" alt="我会一直一直都在的..." />
-				</div>
-			</div>
-			<div class="timeline__item timeline__item--2">
-				<div class="timeline__item__station"></div>
-				<div class="timeline__item__content">
-					<h2 class="timeline__item__content__date">2018 Apr. 11</h2>
-					<p class="timeline__item__content__description">&nbsp;每天都很期待着你的突然出现,特别是在我很想你的时候...</p>
-					<br />
-					<img src="img/Snipaste_2018-08-17_13-29-57.png" />
-				</div>
-			</div>
-			<div class="timeline__item timeline__item--3">
-				<div class="timeline__item__station"></div>
-				<div class="timeline__item__content">
-					<h2 class="timeline__item__content__date">2018 Apr. 19</h2>
-					<p class="timeline__item__content__description">&nbsp;第一次陪小朋友去看电影，emmmmm，虽然看的是斯皮尔伯格的《头号玩家》，但你依旧愿意陪我...</p>
-				</div>
-			</div>
-			<div class="timeline__item timeline__item--4">
-				<div class="timeline__item__station"></div>
-				<div class="timeline__item__content">
-					<h2 class="timeline__item__content__date">2018 Apr. 22</h2>
-					<p class="timeline__item__content__description">&nbsp;期待已久的运动会终于到了，不过你要去当观众...那么晒，还不让打伞╰(‵□′)╯。我能让你受委屈嘛！哼，直接领走...(当然是没有扣分的领走咯~~~)</p>
-				</div>
-			</div>
-			<div class="timeline__item timeline__item--5">
-				<div class="timeline__item__station"></div>
-				<div class="timeline__item__content">
-					<h2 class="timeline__item__content__date">2018 Aug. 25</h2>
-					<p class="timeline__item__content__description">&nbsp;&nbsp;泼墨三千烟火,&nbsp;许你一世迷离</p>
-					<br />
-					<img src="img/Snipaste_2018-08-17_13-50-43.png" />
-				</div>
-			</div>
-			<div class="timeline__item timeline__item--6">
-				<div class="timeline__item__station"></div>
-				<div class="timeline__item__content">
-					<h2 class="timeline__item__content__date">2018 May 6</h2>
-					<p class="timeline__item__content__description">&nbsp;只要有你，每天都是晴空万里呀...</p>
-					<br />
-					<img src="img/Snipaste_2018-08-17_14-02-14.png" />
-				</div>
-			</div>
-			<div class="timeline__item timeline__item--7">
-				<div class="timeline__item__station"></div>
-				<div class="timeline__item__content">
-					<h2 class="timeline__item__content__date">2018 May 11</h2>
-					<p class="timeline__item__content__description">&nbsp;纸短情长，吻你万千</p>
-					<br />
-					<img src="img/Snipaste_2018-08-17_14-06-21.png" />
-				</div>
-			</div>
-			<div class="timeline__item timeline__item--8">
-				<div class="timeline__item__station"></div>
-				<div class="timeline__item__content">
-					<h2 class="timeline__item__content__date">2018 May 20</h2>
-					<p class="timeline__item__content__description">&nbsp;终于敢公开向你表白了，隐匿了很久，终于可以大声的宣布：晓飞，真的认真喜欢你！
-						<br/>&nbsp;深深的话只对你说，长长的路只陪你走......</p>
-					<br />
-					<img src="img/Snipaste_2018-08-17_14-12-15.png" />
-					<img src="img/Snipaste_2018-08-17_14-21-32.png" />
-				</div>
-			</div>
-			<div class="timeline__item timeline__item--9">
-				<div class="timeline__item__station"></div>
-				<div class="timeline__item__content">
-					<h2 class="timeline__item__content__date">2018 May 22</h2>
-					<p class="timeline__item__content__description">&nbsp;你写给我的信，值得我一生珍藏...</p>
-					<br />
-					<img src="img/Snipaste_2018-08-17_14-16-38.png" />
-				</div>
-			</div>
-			<div class="timeline__item timeline__item--10">
-				<div class="timeline__item__station"></div>
-				<div class="timeline__item__content">
-					<h2 class="timeline__item__content__date">2018 May 25</h2>
-					<p class="timeline__item__content__description">&nbsp;唉，惹小朋友生气了...哄了好久，还好看在我主动认错的份上，500字检讨...</p>
-					<br />
-					<img src="img/Snipaste_2018-08-17_15-30-23.png" />
-				</div>
-			</div>
-			<div class="timeline__item timeline__item--11">
-				<div class="timeline__item__station"></div>
-				<div class="timeline__item__content">
-					<h2 class="timeline__item__content__date">2018 May 27</h2>
-					<p class="timeline__item__content__description">&nbsp;终于还是得承认，自己发烧了...38.5°C...尽管在你面前勉强能撑住，不想让你担心。本以为睡一晚就会过去，但此后两天的高烧持续，还是把我烧到了医院...你知道后中午又牺牲午休时间来陪我...</p>
-					<br />
-					<img />
-				</div>
-			</div>
-			<div class="timeline__item timeline__item--12">
-				<div class="timeline__item__station"></div>
-				<div class="timeline__item__content">
-					<h2 class="timeline__item__content__date">2018 May 29</h2>
-					<p class="timeline__item__content__description">&nbsp;;&nbsp;Me&nbsp;--&nbsp;扑过来吧（￣︶￣）↗
-						<br /> &nbsp;小朋友&nbsp;--&nbsp;o(*////▽////*)q
-						<br /> &nbsp;&nbsp;Me&nbsp;&nbsp;--&nbsp;抱住了，不松开了~~~</p>
-					<br />
-					<img src="img/Snipaste_2018-08-17_15-20-47.png" />
-				</div>
-			</div>
-			<div class="timeline__item timeline__item--13">
-				<div class="timeline__item__station"></div>
-				<div class="timeline__item__content">
-					<h2 class="timeline__item__content__date">2018 Jun 4</h2>
-					<p class="timeline__item__content__description">&nbsp;小朋友要开始值周了...值一个星期，七天，大妈盯得紧，只能去陪5天了...^o^y </p>
-					<br />
-					<img src="img/Snipaste_2018-08-17_15-53-36.png" />
-				</div>
-
-			</div>
-			<div class="timeline__item timeline__item--14">
-				<div class="timeline__item__station"></div>
-				<div class="timeline__item__content">
-					<h2 class="timeline__item__content__date">2018 Jun 9</h2>
-					<p class="timeline__item__content__description">&nbsp;数模校赛开始了...三天两夜，一直都是沉浸在头脑风暴中，真的无暇陪你，也好在你比较乖巧。赛后，第一件事就是去找你，又是腻了一下午...~o(*￣▽￣*)ブ</p>
-				</div>
-			</div>
-			<div class="timeline__item timeline__item--15">
-				<div class="timeline__item__station"></div>
-				<div class="timeline__item__content">
-					<h2 class="timeline__item__content__date">2018 Jun 21</h2>
-					<p class="timeline__item__content__description">&nbsp;哈！背着我偷偷给我买了一大堆的小零食，还有一个足球！！！此生两大爱好同时被满足！！！♪(^∇^*)</p>
-					<br />
-					<img src="img/Snipaste_2018-08-17_16-06-05.png" />
-					<img src="img/Snipaste_2018-08-17_16-05-35.png" />
-				</div>
-			</div>
-			<div class="timeline__item timeline__item--16">
-				<div class="timeline__item__station"></div>
-				<div class="timeline__item__content">
-					<h2 class="timeline__item__content__date">2018 July 10</h2>
-					<p class="timeline__item__content__description">&nbsp;在一起100天啦！！！感觉时间真的是过的好快呀~~~</p>
-					<br />
-					<img src="img/Snipaste_2018-08-17_16-23-53.png" />
-				</div>
-			</div>
-			<div class="timeline__item timeline__item--18">
-				<div class="timeline__item__station"></div>
-				<div class="timeline__item__content">
-					<h2 class="timeline__item__content__date">2018 Jun 13</h2>
-					<p class="timeline__item__content__description">&nbsp;假期到了，很无奈，要分开了...回家的路上，手一直牵着，我怕一松开可能就要好久才能牵到了。到了家乡的火车站，伫立相拥，许久许久......</p>
-					<br />
-					<img src="img/Snipaste_2018-08-17_16-44-08.png" />
-				</div>
-			</div>
-			<div class="timeline__item timeline__item--19">
-				<div class="timeline__item__station"></div>
-				<div class="timeline__item__content">
-					<h2 class="timeline__item__content__date">2018 Jun 28</h2>
-					<p class="timeline__item__content__description">&nbsp;My brithday!!!小朋友也是很辛苦熬夜到了凌晨来给我发来祝福</p>
-					<br />
-					<img src="img/Snipaste_2018-08-17_16-53-31.png" />
-				</div>
-			</div>
-			<div class="timeline__item timeline__item--20">
-				<div class="timeline__item__station"></div>
-				<div class="timeline__item__content">
-					<h2 class="timeline__item__content__date">2018 August 16</h2>
-					<p class="timeline__item__content__description">&nbsp;小朋友的科目二顺利考过了！！！Nice，依然优秀...</p>
-					<br />
-					<img />
-				</div>
-			</div>
-			<div class="timeline__item timeline__item--21">
-				<div class="timeline__item__station"></div>
-				<div class="timeline__item__content">
-					<h2 class="timeline__item__content__date">2018 August 17</h2>
-					<p class="timeline__item__content__description">&nbsp;我们的故事未完待续···</p>
-					<br />
-					<img src="img/Snipaste_2018-08-17_16-56-38.png" />
-				</div>
-			</div>
-			<div class="timeline__item timeline__item--22"> </div>
-			<div class="timeline__item timeline__item--23"> </div>
-			<div class="timeline__item timeline__item--24"> </div>
-
-		</div>
-	</section>
-
-	<script>
-		function customWayPoint(className, addClassName, customOffset) {
-			var waypoints = $(className).waypoint({
-				handler: function (direction) {
-					if (direction == "down") {
-						$(className).addClass(addClassName);
-					} else {
-						$(className).removeClass(addClassName);
-					}
-				},
-				offset: customOffset
-			});
-		}
-
-		var defaultOffset = '50%';
-
-		for (i = 0; i < 50; i++) {
-			customWayPoint('.timeline__item--' + i, 'timeline__item-bg', defaultOffset);
-		}
-	</script>
+			.site-footer__text__link {
+				color: #8287a9;
+			}
+		</style>
 
 
-</body>
+		<!--背景音乐-->
+		<embed src="music/小魂%20-%20宝贝.mp3" hidden="true" autostart="true" loop="true">
+
+
+	</head>
+
+	<body>
+
+		<script src="js/jquery.waypoints.min.js"></script>
+
+		<header class="site-header">
+			<div class="wrapper">
+				<h1 class="site-header__title">唯不忘相思...</h1>
+			</div>
+		</header>
+
+		<section class="timeline">
+			<div class="wrapper">
+				<div class="timeline__item timeline__item--0">
+					<div class="timeline__item__station"></div>
+					<div class="timeline__item__content">
+						<h2 class="timeline__item__content__date">2018&nbsp;Apr.</h2>
+						<p class="timeline__item__content__description">&nbsp;四月是真是上帝给我们开的一个恶作剧，让你我以独特的方式相见，我们的故事就此开始 ...
+						</p>
+					</div>
+				</div>
+				<div class="timeline__item timeline__item--1">
+					<div class="timeline__item__station"></div>
+					<div class="timeline__item__content">
+						<h2 class="timeline__item__content__date">2018 Apr. 9</h2>
+						<p class="timeline__item__content__description">&nbsp;相处了一段时间，发现两个人都是真的很走心的在对待这份感情...</p>
+						<br />
+						<img src="img/Snipaste_2018-08-17_13-22-32.png" alt="我会一直一直都在的..." />
+					</div>
+				</div>
+				<div class="timeline__item timeline__item--2">
+					<div class="timeline__item__station"></div>
+					<div class="timeline__item__content">
+						<h2 class="timeline__item__content__date">2018 Apr. 11</h2>
+						<p class="timeline__item__content__description">&nbsp;每天都很期待着你的突然出现,特别是在我很想你的时候...</p>
+						<br />
+						<img src="img/Snipaste_2018-08-17_13-29-57.png" />
+					</div>
+				</div>
+				<div class="timeline__item timeline__item--3">
+					<div class="timeline__item__station"></div>
+					<div class="timeline__item__content">
+						<h2 class="timeline__item__content__date">2018 Apr. 19</h2>
+						<p class="timeline__item__content__description">&nbsp;第一次陪小朋友去看电影，emmmmm，虽然看的是斯皮尔伯格的《头号玩家》，但你依旧愿意陪我...</p>
+					</div>
+				</div>
+				<div class="timeline__item timeline__item--4">
+					<div class="timeline__item__station"></div>
+					<div class="timeline__item__content">
+						<h2 class="timeline__item__content__date">2018 Apr. 22</h2>
+						<p class="timeline__item__content__description">&nbsp;期待已久的运动会终于到了，不过你要去当观众...那么晒，还不让打伞╰(‵□′)╯。我能让你受委屈嘛！哼，直接领走...(当然是没有扣分的领走咯~~~)</p>
+					</div>
+				</div>
+				<div class="timeline__item timeline__item--5">
+					<div class="timeline__item__station"></div>
+					<div class="timeline__item__content">
+						<h2 class="timeline__item__content__date">2018 Aug. 25</h2>
+						<p class="timeline__item__content__description">&nbsp;&nbsp;泼墨三千烟火,&nbsp;许你一世迷离</p>
+						<br />
+						<img src="img/Snipaste_2018-08-17_13-50-43.png" />
+					</div>
+				</div>
+				<div class="timeline__item timeline__item--6">
+					<div class="timeline__item__station"></div>
+					<div class="timeline__item__content">
+						<h2 class="timeline__item__content__date">2018 May 6</h2>
+						<p class="timeline__item__content__description">&nbsp;只要有你，每天都是晴空万里呀...</p>
+						<br />
+						<img src="img/Snipaste_2018-08-17_14-02-14.png" />
+					</div>
+				</div>
+				<div class="timeline__item timeline__item--7">
+					<div class="timeline__item__station"></div>
+					<div class="timeline__item__content">
+						<h2 class="timeline__item__content__date">2018 May 11</h2>
+						<p class="timeline__item__content__description">&nbsp;纸短情长，吻你万千</p>
+						<br />
+						<img src="img/Snipaste_2018-08-17_14-06-21.png" />
+					</div>
+				</div>
+				<div class="timeline__item timeline__item--8">
+					<div class="timeline__item__station"></div>
+					<div class="timeline__item__content">
+						<h2 class="timeline__item__content__date">2018 May 20</h2>
+						<p class="timeline__item__content__description">&nbsp;终于敢公开向你表白了，隐匿了很久，终于可以大声的宣布：晓飞，真的认真喜欢你！
+							<br/>&nbsp;深深的话只对你说，长长的路只陪你走......</p>
+						<br />
+						<img src="img/Snipaste_2018-08-17_14-12-15.png" />
+						<img src="img/Snipaste_2018-08-17_14-21-32.png" />
+					</div>
+				</div>
+				<div class="timeline__item timeline__item--9">
+					<div class="timeline__item__station"></div>
+					<div class="timeline__item__content">
+						<h2 class="timeline__item__content__date">2018 May 22</h2>
+						<p class="timeline__item__content__description">&nbsp;你写给我的信，值得我一生珍藏...</p>
+						<br />
+						<img src="img/Snipaste_2018-08-17_14-16-38.png" />
+					</div>
+				</div>
+				<div class="timeline__item timeline__item--10">
+					<div class="timeline__item__station"></div>
+					<div class="timeline__item__content">
+						<h2 class="timeline__item__content__date">2018 May 25</h2>
+						<p class="timeline__item__content__description">&nbsp;唉，惹小朋友生气了...哄了好久，还好看在我主动认错的份上，500字检讨...</p>
+						<br />
+						<img src="img/Snipaste_2018-08-17_15-30-23.png" />
+					</div>
+				</div>
+				<div class="timeline__item timeline__item--11">
+					<div class="timeline__item__station"></div>
+					<div class="timeline__item__content">
+						<h2 class="timeline__item__content__date">2018 May 27</h2>
+						<p class="timeline__item__content__description">&nbsp;终于还是得承认，自己发烧了...38.5°C...尽管在你面前勉强能撑住，不想让你担心。本以为睡一晚就会过去，但此后两天的高烧持续，还是把我烧到了医院...你知道后中午又牺牲午休时间来陪我...</p>
+						<br />
+						<img />
+					</div>
+				</div>
+				<div class="timeline__item timeline__item--12">
+					<div class="timeline__item__station"></div>
+					<div class="timeline__item__content">
+						<h2 class="timeline__item__content__date">2018 May 29</h2>
+						<p class="timeline__item__content__description">&nbsp;;&nbsp;Me&nbsp;--&nbsp;扑过来吧（￣︶￣）↗
+							<br /> &nbsp;小朋友&nbsp;--&nbsp;o(*////▽////*)q
+							<br /> &nbsp;&nbsp;Me&nbsp;&nbsp;--&nbsp;抱住了，不松开了~~~</p>
+						<br />
+						<img src="img/Snipaste_2018-08-17_15-20-47.png" />
+					</div>
+				</div>
+				<div class="timeline__item timeline__item--13">
+					<div class="timeline__item__station"></div>
+					<div class="timeline__item__content">
+						<h2 class="timeline__item__content__date">2018 Jun 4</h2>
+						<p class="timeline__item__content__description">&nbsp;小朋友要开始值周了...值一个星期，七天，大妈盯得紧，只能去陪5天了...^o^y </p>
+						<br />
+						<img src="img/Snipaste_2018-08-17_15-53-36.png" />
+					</div>
+
+				</div>
+				<div class="timeline__item timeline__item--14">
+					<div class="timeline__item__station"></div>
+					<div class="timeline__item__content">
+						<h2 class="timeline__item__content__date">2018 Jun 9</h2>
+						<p class="timeline__item__content__description">&nbsp;数模校赛开始了...三天两夜，一直都是沉浸在头脑风暴中，真的无暇陪你，也好在你比较乖巧。赛后，第一件事就是去找你，又是腻了一下午...~o(*￣▽￣*)ブ</p>
+					</div>
+				</div>
+				<div class="timeline__item timeline__item--15">
+					<div class="timeline__item__station"></div>
+					<div class="timeline__item__content">
+						<h2 class="timeline__item__content__date">2018 Jun 21</h2>
+						<p class="timeline__item__content__description">&nbsp;哈！背着我偷偷给我买了一大堆的小零食，还有一个足球！！！此生两大爱好同时被满足！！！♪(^∇^*)</p>
+						<br />
+						<img src="img/Snipaste_2018-08-17_16-06-05.png" />
+						<img src="img/Snipaste_2018-08-17_16-05-35.png" />
+					</div>
+				</div>
+				<div class="timeline__item timeline__item--16">
+					<div class="timeline__item__station"></div>
+					<div class="timeline__item__content">
+						<h2 class="timeline__item__content__date">2018 July 10</h2>
+						<p class="timeline__item__content__description">&nbsp;在一起100天啦！！！感觉时间真的是过的好快呀~~~</p>
+						<br />
+						<img src="img/Snipaste_2018-08-17_16-23-53.png" />
+					</div>
+				</div>
+				<div class="timeline__item timeline__item--18">
+					<div class="timeline__item__station"></div>
+					<div class="timeline__item__content">
+						<h2 class="timeline__item__content__date">2018 Jun 13</h2>
+						<p class="timeline__item__content__description">&nbsp;假期到了，很无奈，要分开了...回家的路上，手一直牵着，我怕一松开可能就要好久才能牵到了。到了家乡的火车站，伫立相拥，许久许久......</p>
+						<br />
+						<img src="img/Snipaste_2018-08-17_16-44-08.png" />
+					</div>
+				</div>
+				<div class="timeline__item timeline__item--19">
+					<div class="timeline__item__station"></div>
+					<div class="timeline__item__content">
+						<h2 class="timeline__item__content__date">2018 Jun 28</h2>
+						<p class="timeline__item__content__description">&nbsp;My brithday!!!小朋友也是很辛苦熬夜到了凌晨来给我发来祝福</p>
+						<br />
+						<img src="img/Snipaste_2018-08-17_16-53-31.png" />
+					</div>
+				</div>
+				<div class="timeline__item timeline__item--20">
+					<div class="timeline__item__station"></div>
+					<div class="timeline__item__content">
+						<h2 class="timeline__item__content__date">2018 August 16</h2>
+						<p class="timeline__item__content__description">&nbsp;小朋友的科目二顺利考过了！！！Nice，依然优秀...</p>
+						<br />
+						<img />
+					</div>
+				</div>
+				<div class="timeline__item timeline__item--21">
+					<div class="timeline__item__station"></div>
+					<div class="timeline__item__content">
+						<h2 class="timeline__item__content__date">2018 August 17</h2>
+						<p class="timeline__item__content__description">&nbsp;我们的故事未完待续···</p>
+						<br />
+						<img src="img/Snipaste_2018-08-17_16-56-38.png" />
+					</div>
+				</div>
+				<div class="timeline__item timeline__item--22"> </div>
+				<div class="timeline__item timeline__item--23"> </div>
+				<div class="timeline__item timeline__item--24"> </div>
+
+			</div>
+		</section>
+
+		<script type="text/javascript">
+			function customWayPoint(className, addClassName, customOffset) {
+				var waypoints = $(className).waypoint({
+					handler: function (direction) {
+						if (direction == "down") {
+							$(className).addClass(addClassName);
+						} else {
+							$(className).removeClass(addClassName);
+						}
+					},
+					offset: customOffset
+				});
+			}
+
+			var defaultOffset = '50%';
+
+			for (i = 0; i < 65535; i++) {
+				customWayPoint('.timeline__item--' + i, 'timeline__item-bg', defaultOffset);
+			}
+		</script>
+
+	</body>
 
 </html>
+
